@@ -1,0 +1,48 @@
+.bar {
+	width: 100%;
+	height: max-content;
+	position: relative;
+	margin: 10px 0;
+	&__bar-top {
+		min-height: 600px;
+		width: 100%;
+		display: flex;
+	}
+	&__shelves {
+		width: 70vw;
+	}
+	&__neon {
+		max-height: 500px;
+		width: 30vw;
+	}
+	&__bar-bootom {
+		position: relative;
+	}
+	&__counter {
+		position: relative;
+		z-index: 60;
+		width: 100%;
+	}
+	&__barmen {
+		position: absolute;
+		right: 2vw;
+		top: -43%;
+		width: 25vw;
+	}
+}
+@media (max-width: 1000px) {
+	.bar {
+		&__shelves {
+			width: calc(100vw - 10px);
+		}
+		&__neon {
+			display: none;
+		}
+	}
+}
+
+.shelves {
+	padding-top: 50px;
+	&__shelf {
+	}
+}
