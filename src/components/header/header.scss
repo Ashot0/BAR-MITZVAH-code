@@ -3,6 +3,7 @@
 	top: 0;
 	width: 100%;
 	height: 120px;
+	padding: 12px 0;
 	background-color: var(--Others-Background);
 }
 .running-text-container {
@@ -45,5 +46,11 @@
 	}
 	100% {
 		transform: translateX(-100%);
+	}
+}
+@media (max-width: 620px) {
+	.running-text:before,
+	.running-text::after {
+		content: ' ';
 	}
 }

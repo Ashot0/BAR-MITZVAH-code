@@ -32,17 +32,20 @@ const Popup: React.FC<IPopupProps> = ({
 
 	const [displayText, setDisplayText] = useState('');
 	const [index, setIndex] = useState(0);
+	const [full, setFull] = useState(false);
 
 	useEffect(() => {
-		if (strDescription != null) {
-			if (index < strDescription.length) {
-				const timer = setInterval(() => {
-					setDisplayText(
-						(prevText) => prevText + strDescription[index]
-					);
-					setIndex((prevIndex) => prevIndex + 1);
-				}, 50);
-				return () => clearInterval(timer);
+		if (full === false) {
+			if (strDescription != null) {
+				if (index < strDescription.length) {
+					const timer = setInterval(() => {
+						setDisplayText(
+							(prevText) => prevText + strDescription[index]
+						);
+						setIndex((prevIndex) => prevIndex + 1);
+					}, 50);
+					return () => clearInterval(timer);
+				}
 			}
 		}
 	}, [index, strDescription]);
@@ -53,6 +56,10 @@ const Popup: React.FC<IPopupProps> = ({
 	}, [strDescription]);
 	const open = () => {
 		openCoctails(cocktailsLink);
+	};
+	const handleFullText = () => {
+		setFull(true);
+		setDisplayText(strDescription);
 	};
 
 	return (
@@ -70,9 +77,9 @@ const Popup: React.FC<IPopupProps> = ({
 					[Coctails]
 				</button>
 			</p>
-			<p className="popup__text">
+			<p onClick={handleFullText} className="popup__text">
 				{displayText}
-				<span className="popup__line">|</span>
+				{!full ? <span className="popup__line">|</span> : ''}
 			</p>
 		</div>
 	);

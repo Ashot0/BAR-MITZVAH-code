@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar, A11y } from 'swiper/modules';
 import 'swiper/css';
 
 import './drinks-slider.scss';
 import DrinkSlide from '../drinkSlide/DrinkSlide';
-import SwiperCore from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

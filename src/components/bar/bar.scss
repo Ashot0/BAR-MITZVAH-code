@@ -9,6 +9,7 @@
 		display: flex;
 	}
 	&__shelves {
+		padding: 50px 10px 0 10px;
 		width: 70vw;
 	}
 	&__neon {
@@ -22,6 +23,7 @@
 		position: relative;
 		z-index: 60;
 		width: 100%;
+		pointer-events: none;
 	}
 	&__barmen {
 		position: absolute;
@@ -30,19 +32,14 @@
 		width: 25vw;
 	}
 }
-@media (max-width: 1000px) {
+@media (max-width: 1150px) {
 	.bar {
 		&__shelves {
 			width: calc(100vw - 10px);
+			padding: 50px 0 0 0;
 		}
 		&__neon {
 			display: none;
 		}
-	}
-}
-
-.shelves {
-	padding: 50px 10px 0 10px;
-	&__shelf {
 	}
 }
