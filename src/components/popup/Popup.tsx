@@ -7,7 +7,8 @@ interface IPopupProps {
 	className?: string;
 	descriptionLink: string;
 	cocktailsLink: string;
-	close: any;
+	close: () => void;
+	openCoctails: (cocktailsLink: string) => void;
 }
 
 const Popup: React.FC<IPopupProps> = ({
@@ -15,6 +16,7 @@ const Popup: React.FC<IPopupProps> = ({
 	descriptionLink,
 	cocktailsLink,
 	close,
+	openCoctails,
 }) => {
 	const [nameDescription, setNameDescription] = useState('');
 	const [strDescription, setStrDescription] = useState('');
@@ -49,6 +51,9 @@ const Popup: React.FC<IPopupProps> = ({
 		setDisplayText('');
 		setIndex(0);
 	}, [strDescription]);
+	const open = () => {
+		openCoctails(cocktailsLink);
+	};
 
 	return (
 		<div className={className + ' popup'}>
@@ -56,7 +61,14 @@ const Popup: React.FC<IPopupProps> = ({
 				<img className="popup__close-img" src="./Images/x.png" alt="" />
 			</button>
 			<p className="popup__title">
-				{nameDescription} <span>[Coctails]</span>
+				{nameDescription}
+				<button
+					className="popup__open-drinks"
+					type="button"
+					onClick={open}
+				>
+					[Coctails]
+				</button>
 			</p>
 			<p className="popup__text">
 				{displayText}

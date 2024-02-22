@@ -34,6 +34,7 @@
 	&__images {
 		position: absolute;
 		filter: drop-shadow(0 2px 1px var(--Others-Borders));
+		cursor: pointer;
 		height: 150px;
 		&:hover {
 			overflow: visible;

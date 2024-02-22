@@ -1,0 +1,32 @@
+.drink-slide {
+	min-height: fit-content;
+	margin: 10px 0;
+	padding: 20px;
+	border-radius: 50px;
+	border: 2px solid var(--Others-Background);
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	height: fit-content;
+	&__img {
+		border-radius: 50px;
+		max-width: 20vw;
+		max-height: 20vw;
+		overflow: hidden;
+	}
+	&__text {
+		display: flex;
+		flex-direction: column;
+		width: 50vw;
+		text-align: start;
+		&_bold {
+			font-weight: bold;
+		}
+	}
+	&__ingridients {
+		display: flex;
+		flex-direction: column;
+		width: 50vw;
+		text-align: start;
+	}
+}

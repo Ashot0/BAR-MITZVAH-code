@@ -6,7 +6,9 @@ import Bottle from '../bottle/Bottle';
 interface IShelfProps {
 	className?: string;
 	names?: string[];
-	func?: any;
+	func: {
+		(descriptionLink: string, cocktailsLink: string): void;
+	};
 }
 
 const Shelf: React.FC<IShelfProps> = ({ className = '', names, func }) => {
@@ -17,7 +19,11 @@ const Shelf: React.FC<IShelfProps> = ({ className = '', names, func }) => {
 					<Bottle func={func} name={name} key={name} />
 				))}
 			</div>
-			<img src="./Images/shelf.png" className="shelf__botom" />
+			<img
+				src="./Images/shelf.png"
+				className="shelf__botom"
+				alt="shelf"
+			/>
 		</div>
 	);
 };

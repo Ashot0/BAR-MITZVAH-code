@@ -4,3 +4,12 @@
 	overflow: hidden;
 	background-color: var(--Background);
 }
+::-webkit-scrollbar {
+	background-color: #825971;
+	width: 8px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: #360019;
+	width: 3px;
+	border-radius: 5px;
+}

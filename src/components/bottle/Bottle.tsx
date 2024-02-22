@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './bottle.scss';
 import useBottle from '../../hooks/useBottle';
 
 interface IBottleProps {
 	className?: string;
 	name: string;
-	func: any;
+	func: {
+		(descriptionLink: string, cocktailsLink: string): void;
+	};
 }
 
 const Bottle: React.FC<IBottleProps> = ({ className = '', name, func }) => {
@@ -13,7 +15,6 @@ const Bottle: React.FC<IBottleProps> = ({ className = '', name, func }) => {
 		name,
 	});
 	const handleClick = () => {
-		// window.open(descriptionLink, '_blank');
 		func(descriptionLink, cocktailsLink);
 	};
 	return (
@@ -24,7 +25,7 @@ const Bottle: React.FC<IBottleProps> = ({ className = '', name, func }) => {
 					onClick={handleClick}
 					className="bottle__images"
 					src={imageLink}
-					alt=""
+					alt={name}
 				/>
 			</div>
 		</div>

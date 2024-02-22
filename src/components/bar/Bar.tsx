@@ -3,6 +3,7 @@ import './bar.scss';
 import Shelf from '../shelf/Shelf';
 import Popup from '../popup/Popup';
 import Barmen from '../barmen/Barmen';
+import CoctailsPopup from '../cocktailsPopup/CoctailsPopup';
 
 export default function Bar({ className = '' }) {
 	const names1: string[] = [
@@ -67,17 +68,25 @@ export default function Bar({ className = '' }) {
 		'Bacardi',
 	];
 	const [popup, setPopup] = useState(false);
+	const [popupCoctails, setPopupCoctails] = useState(false);
 	const [description, setDescription] = useState('');
 	const [cocktails, setCocktails] = useState('');
-
 	const PopupClose = () => {
 		setPopup(!popup);
 	};
+	const PopupCoctailsClose = () => {
+		setPopupCoctails(!popupCoctails);
+	};
 
 	const PopupFunction = (descriptionLink: string, cocktailsLink: string) => {
+		setPopupCoctails(false);
 		setDescription(descriptionLink);
 		setCocktails(cocktailsLink);
 		setPopup(!popup);
+	};
+	const PopupCoctailsFunction = () => {
+		setPopup(false);
+		setPopupCoctails(true);
 	};
 
 	return (
@@ -87,7 +96,14 @@ export default function Bar({ className = '' }) {
 					{popup && (
 						<Popup
 							close={PopupClose}
+							openCoctails={PopupCoctailsFunction}
 							descriptionLink={description}
+							cocktailsLink={cocktails}
+						/>
+					)}
+					{popupCoctails && (
+						<CoctailsPopup
+							close={PopupCoctailsClose}
 							cocktailsLink={cocktails}
 						/>
 					)}
