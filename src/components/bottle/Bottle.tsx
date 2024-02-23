@@ -14,6 +14,7 @@ interface IBottleProps {
 	};
 }
 
+
 const Bottle: React.FC<IBottleProps> = ({ className = '', name, func }) => {
 	const { imageLink, descriptionLink, cocktailsLink } = useBottle({
 		name,

@@ -22,6 +22,16 @@
 			display: block;
 		}
 	}
+	&:active {
+		.bottle__text {
+			display: block;
+		}
+	}
+	&:focus {
+		.bottle__text {
+			display: block;
+		}
+	}
 	&__wrapper {
 		position: relative;
 		bottom: 43px;
