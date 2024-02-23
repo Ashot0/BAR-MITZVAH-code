@@ -3,10 +3,12 @@
 	border-radius: 8px;
 	max-width: 90vw;
 	max-height: 80vh;
+	max-height: 80vw;
+	max-height: 600px;
 	overflow-y: auto;
 	overflow-x: hidden;
 	position: absolute;
-	z-index: 50;
+	z-index: 70;
 	padding: 20px;
 	background-color: var(--Background);
 	border: 4px solid var(--Others-Background);
@@ -20,11 +22,18 @@
 	}
 	&__close-img {
 		width: 4vw;
+		min-width: 50px;
 	}
 	&__title {
 		font-weight: bold;
 		margin-top: -20px;
 		margin-bottom: 10px;
+	}
+	&__title-image {
+		position: relative;
+		width: 70px;
+		height: 70px;
+		margin: -40px -25px 0 -15px;
 	}
 	&__text {
 	}
@@ -42,8 +51,15 @@
 @media (max-width: 800px) {
 	.popup {
 		&__close-btn {
-			right: 7vw;
+			right: calc(5px + 50px);
 		}
+	}
+}
+
+@media (max-width: 600px) {
+	.popup {
+		top: 20px;
+		position: fixed;
 	}
 }
 

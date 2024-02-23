@@ -31,10 +31,10 @@ export default function Bar({ className = '' }) {
 		'Applejack',
 		'Ricard',
 		'Sherry',
-		'Cognac',
 		'Everclear',
 		'Ouzo',
-		'Apple brandy',
+		// 'Apple brandy',
+		'Black Sambuca',
 		'Lager',
 		'Whiskey',
 		'Pisco',
@@ -69,6 +69,7 @@ export default function Bar({ className = '' }) {
 	];
 	const [popup, setPopup] = useState(false);
 	const [popupCoctails, setPopupCoctails] = useState(false);
+	const [image, setImage] = useState('');
 	const [description, setDescription] = useState('');
 	const [cocktails, setCocktails] = useState('');
 	const PopupClose = () => {
@@ -78,9 +79,15 @@ export default function Bar({ className = '' }) {
 		setPopupCoctails(!popupCoctails);
 	};
 
-	const PopupFunction = (descriptionLink: string, cocktailsLink: string) => {
+	const PopupFunction = (
+		imageLink: string,
+		descriptionLink: string,
+		cocktailsLink: string
+	) => {
 		setPopupCoctails(false);
+		setPopup(false);
 		setDescription(descriptionLink);
+		setImage(imageLink);
 		setCocktails(cocktailsLink);
 		setPopup(!popup);
 	};
@@ -99,6 +106,7 @@ export default function Bar({ className = '' }) {
 							openCoctails={PopupCoctailsFunction}
 							descriptionLink={description}
 							cocktailsLink={cocktails}
+							imageLink={image}
 						/>
 					)}
 					{popupCoctails && (

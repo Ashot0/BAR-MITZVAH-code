@@ -2,17 +2,29 @@ import React, { useState, useEffect } from 'react';
 
 import './popup.scss';
 import axios from 'axios';
+import WikiSearch from '../../services/WikiSearch';
 
 interface IPopupProps {
 	className?: string;
+	imageLink: string;
 	descriptionLink: string;
 	cocktailsLink: string;
 	close: () => void;
 	openCoctails: (cocktailsLink: string) => void;
 }
-
+interface Ingredient {
+	strIngredient: string;
+	strDescription: string;
+}
+interface ResponseData {
+	ingredients: Ingredient[];
+}
+interface Response {
+	data: ResponseData;
+}
 const Popup: React.FC<IPopupProps> = ({
 	className = '',
+	imageLink,
 	descriptionLink,
 	cocktailsLink,
 	close,
@@ -20,15 +32,23 @@ const Popup: React.FC<IPopupProps> = ({
 }) => {
 	const [nameDescription, setNameDescription] = useState('');
 	const [strDescription, setStrDescription] = useState('');
+	const [completeLoad, setCompleteLoad] = useState(false);
 
 	const PopupDescription = async () => {
-		const reduse: any = await axios.get(descriptionLink);
+		const reduse: Response = await axios.get(descriptionLink);
 		setNameDescription(reduse.data.ingredients[0].strIngredient);
 		setStrDescription(reduse.data.ingredients[0].strDescription);
+		if (strDescription == null) {
+			const response: string = await WikiSearch(nameDescription);
+			setStrDescription(await response);
+		}
+		if (completeLoad === false) {
+			setCompleteLoad(!completeLoad);
+		}
 	};
 	useEffect(() => {
 		PopupDescription();
-	}, []);
+	}, [completeLoad]);
 
 	const [displayText, setDisplayText] = useState('');
 	const [index, setIndex] = useState(0);
@@ -47,6 +67,8 @@ const Popup: React.FC<IPopupProps> = ({
 					return () => clearInterval(timer);
 				}
 			}
+		} else {
+			setDisplayText(strDescription);
 		}
 	}, [index, strDescription]);
 
@@ -69,6 +91,7 @@ const Popup: React.FC<IPopupProps> = ({
 			</button>
 			<p className="popup__title">
 				{nameDescription}
+				<img className="popup__title-image" src={imageLink} alt="" />
 				<button
 					className="popup__open-drinks"
 					type="button"
@@ -78,8 +101,8 @@ const Popup: React.FC<IPopupProps> = ({
 				</button>
 			</p>
 			<p onClick={handleFullText} className="popup__text">
-				{displayText}
-				{!full ? <span className="popup__line">|</span> : ''}
+				{displayText ? <span>{displayText}</span> : ' '}
+				{!full ? <span className="popup__line">|</span> : ' '}
 			</p>
 		</div>
 	);

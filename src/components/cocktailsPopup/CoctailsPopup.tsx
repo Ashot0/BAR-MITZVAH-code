@@ -9,15 +9,28 @@ interface ICoctailsPopupProps {
 	close: () => void;
 }
 
+interface IDrink {
+	strDrink: string;
+	strDrinkThumb: string;
+	idDrink: string;
+}
+
+interface ResponseData {
+	drinks: IDrink[];
+}
+interface Response {
+	data: ResponseData;
+}
+
 const CoctailsPopup: React.FC<ICoctailsPopupProps> = ({
 	className = '',
 	cocktailsLink,
 	close,
 }) => {
-	const [drinks, setDrinks] = useState([]);
+	const [drinks, setDrinks] = useState<IDrink[]>([]);
 
 	const PopupDrinks = async () => {
-		const reduse: any = await axios.get(cocktailsLink);
+		const reduse: Response = await axios.get(cocktailsLink);
 		setDrinks(reduse.data.drinks);
 	};
 	useEffect(() => {

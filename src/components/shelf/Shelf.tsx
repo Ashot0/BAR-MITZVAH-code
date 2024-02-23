@@ -7,7 +7,11 @@ interface IShelfProps {
 	className?: string;
 	names?: string[];
 	func: {
-		(descriptionLink: string, cocktailsLink: string): void;
+		(
+			imageLink: string,
+			descriptionLink: string,
+			cocktailsLink: string
+		): void;
 	};
 }
 

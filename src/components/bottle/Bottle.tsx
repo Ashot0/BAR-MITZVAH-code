@@ -6,7 +6,11 @@ interface IBottleProps {
 	className?: string;
 	name: string;
 	func: {
-		(descriptionLink: string, cocktailsLink: string): void;
+		(
+			imageLink: string,
+			descriptionLink: string,
+			cocktailsLink: string
+		): void;
 	};
 }
 
@@ -15,7 +19,7 @@ const Bottle: React.FC<IBottleProps> = ({ className = '', name, func }) => {
 		name,
 	});
 	const handleClick = () => {
-		func(descriptionLink, cocktailsLink);
+		func(imageLink, descriptionLink, cocktailsLink);
 	};
 	return (
 		<div className={`${className} bottle`}>
