@@ -56,6 +56,11 @@
 		}
 	}
 }
+.focus {
+	.bottle__text {
+		display: block;
+	}
+}
 @media (max-width: 1000px) {
 	.bottle {
 		&__wrapper {

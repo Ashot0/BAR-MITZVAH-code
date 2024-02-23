@@ -12,10 +12,19 @@ interface IBottleProps {
 			cocktailsLink: string
 		): void;
 	};
+	onTouchStart: () => void;
+	onTouchEnd: () => void;
+	tabIndex: number;
 }
 
-
-const Bottle: React.FC<IBottleProps> = ({ className = '', name, func }) => {
+const Bottle: React.FC<IBottleProps> = ({
+	className = '',
+	name,
+	func,
+	onTouchStart,
+	onTouchEnd,
+	tabIndex,
+}) => {
 	const { imageLink, descriptionLink, cocktailsLink } = useBottle({
 		name,
 	});
@@ -27,6 +36,9 @@ const Bottle: React.FC<IBottleProps> = ({ className = '', name, func }) => {
 			<p className="bottle__text">{name}</p>
 			<div className="bottle__wrapper">
 				<img
+					tabIndex={tabIndex}
+					onTouchStart={onTouchStart}
+					onTouchEnd={onTouchEnd}
 					onClick={handleClick}
 					className="bottle__images"
 					src={imageLink}

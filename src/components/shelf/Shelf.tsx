@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './shelf.scss';
 import Bottle from '../bottle/Bottle';
@@ -16,11 +16,28 @@ interface IShelfProps {
 }
 
 const Shelf: React.FC<IShelfProps> = ({ className = '', names, func }) => {
+	const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+
+	const handleTouchStart = (index: number) => {
+		setFocusedIndex(index);
+	};
+
+	const handleTouchEnd = () => {
+		setFocusedIndex(null);
+	};
 	return (
 		<div className={className + ' shelf'}>
 			<div className="shelf__bottles">
-				{names?.map((name) => (
-					<Bottle func={func} name={name} key={name} />
+				{names?.map((name, index) => (
+					<Bottle
+						func={func}
+						name={name}
+						key={name}
+						className={focusedIndex === index ? 'focus' : ' '}
+						onTouchStart={() => handleTouchStart(index)}
+						onTouchEnd={handleTouchEnd}
+						tabIndex={index}
+					/>
 				))}
 			</div>
 			<img
