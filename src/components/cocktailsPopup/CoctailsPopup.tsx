@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import './coctails-popup.scss';
 import DrinksSlider from '../drinksSlider/DrinksSlider';
+import CloseBtn from '../closeBtn/CloseBtn';
 interface ICoctailsPopupProps {
 	className?: string;
 	cocktailsLink: string;
@@ -30,8 +31,17 @@ const CoctailsPopup: React.FC<ICoctailsPopupProps> = ({
 	const [drinks, setDrinks] = useState<IDrink[]>([]);
 
 	const PopupDrinks = async () => {
-		const reduse: Response = await axios.get(cocktailsLink);
-		setDrinks(reduse.data.drinks);
+		try {
+			const response = await axios.get<ResponseData>(cocktailsLink);
+			setDrinks(response.data.drinks);
+		} catch (error) {
+			if (axios.isAxiosError(error) && error.response?.status === 429) {
+				await new Promise((resolve) => setTimeout(resolve, 1000));
+				PopupDrinks();
+			} else {
+				console.log(error);
+			}
+		}
 	};
 	useEffect(() => {
 		PopupDrinks();
@@ -43,11 +53,7 @@ const CoctailsPopup: React.FC<ICoctailsPopupProps> = ({
 				className="coctails-popup__close-btn"
 				type="button"
 			>
-				<img
-					className="coctails-popup__close-img"
-					src="./Images/x.png"
-					alt=""
-				/>
+				<CloseBtn className="coctails-popup__close-img" />
 			</button>
 			<div className="coctails-popup__drinks">
 				{drinks == null ? (

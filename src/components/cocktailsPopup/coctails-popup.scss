@@ -19,12 +19,12 @@
 		position: absolute;
 		top: 40px;
 		right: 5vw;
-		background-color: inherit;
 		border-radius: 50%;
+		background-color: initial;
 		padding: 2px;
-		border: 2px solid var(--Others-Background);
 	}
 	&__close-img {
+		top: -12px;
 		width: 4vw;
 		min-width: 50px;
 	}
@@ -45,6 +45,10 @@
 	.coctails-popup {
 		&__close-btn {
 			right: calc(5px + 50px);
+			height: 55px;
+			width: 55px;
+			background-color: inherit;
+			border: 2px solid var(--Others-Background);
 		}
 	}
 }

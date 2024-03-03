@@ -13,9 +13,15 @@ interface IShelfProps {
 			cocktailsLink: string
 		): void;
 	};
+	tabIndex?: number;
 }
 
-const Shelf: React.FC<IShelfProps> = ({ className = '', names, func }) => {
+const Shelf: React.FC<IShelfProps> = ({
+	className = '',
+	names,
+	func,
+	tabIndex,
+}) => {
 	const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
 	const handleTouchStart = (index: number) => {
@@ -36,7 +42,7 @@ const Shelf: React.FC<IShelfProps> = ({ className = '', names, func }) => {
 						className={focusedIndex === index ? 'focus' : ' '}
 						onTouchStart={() => handleTouchStart(index)}
 						onTouchEnd={handleTouchEnd}
-						tabIndex={index}
+						tabIndex={tabIndex ? tabIndex + index + 1 : index + 1}
 					/>
 				))}
 			</div>

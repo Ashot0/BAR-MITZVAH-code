@@ -119,16 +119,19 @@ export default function Bar({ className = '' }) {
 						func={PopupFunction}
 						names={names1}
 						className="shelves__shelf"
+						tabIndex={0}
 					/>
 					<Shelf
 						func={PopupFunction}
 						names={names2}
 						className="shelves__shelf"
+						tabIndex={30}
 					/>
 					<Shelf
 						func={PopupFunction}
 						names={names3}
 						className="shelves__shelf"
+						tabIndex={60}
 					/>
 				</div>
 				<img

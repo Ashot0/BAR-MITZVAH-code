@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './popup.scss';
 import axios from 'axios';
 import WikiSearch from '../../services/WikiSearch';
+import CloseBtn from '../closeBtn/CloseBtn';
 
 interface IPopupProps {
 	className?: string;
@@ -65,6 +66,10 @@ const Popup: React.FC<IPopupProps> = ({
 						setIndex((prevIndex) => prevIndex + 1);
 					}, 50);
 					return () => clearInterval(timer);
+				} else {
+					if (completeLoad) {
+						handleFullText();
+					}
 				}
 			}
 		} else {
@@ -87,7 +92,7 @@ const Popup: React.FC<IPopupProps> = ({
 	return (
 		<div className={className + ' popup'}>
 			<button onClick={close} className="popup__close-btn" type="button">
-				<img className="popup__close-img" src="./Images/x.png" alt="" />
+				<CloseBtn className="popup__close-img" />
 			</button>
 			<p className="popup__title">
 				{nameDescription}
@@ -97,11 +102,29 @@ const Popup: React.FC<IPopupProps> = ({
 					type="button"
 					onClick={open}
 				>
-					[Coctails]
+					Coctails
 				</button>
+
+				{!full ? (
+					<button
+						className="popup__open-text"
+						type="button"
+						onClick={handleFullText}
+					>
+						Open full text
+					</button>
+				) : (
+					' '
+				)}
 			</p>
 			<p onClick={handleFullText} className="popup__text">
-				{displayText ? <span>{displayText}</span> : ' '}
+				{displayText ? (
+					<span className={full ? '' : 'popup__text_pointer'}>
+						{displayText}
+					</span>
+				) : (
+					' '
+				)}
 				{!full ? <span className="popup__line">|</span> : ' '}
 			</p>
 		</div>

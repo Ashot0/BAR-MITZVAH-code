@@ -64,13 +64,22 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 
 	const PopupDrinks = async () => {
 		const url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${idDrink}`;
-		const response = await axios.get(url);
-		const data: ICoctailsArray = await response.data.drinks;
-		if (!data) {
-			console.log('No data received');
-			return;
+		try {
+			const response = await axios.get(url);
+			const data: ICoctailsArray = await response.data.drinks;
+			if (!data) {
+				console.log('No data received');
+				return;
+			}
+			setDrinkDetails(data[0]);
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				await new Promise((resolve) => setTimeout(resolve, 1000));
+				await PopupDrinks();
+			} else {
+				console.log(error);
+			}
 		}
-		setDrinkDetails(data[0]);
 	};
 
 	useEffect(() => {

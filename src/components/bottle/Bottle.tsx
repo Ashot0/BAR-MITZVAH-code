@@ -32,11 +32,10 @@ const Bottle: React.FC<IBottleProps> = ({
 		func(imageLink, descriptionLink, cocktailsLink);
 	};
 	return (
-		<div className={`${className} bottle`}>
+		<div className={`${className} bottle`} tabIndex={tabIndex}>
 			<p className="bottle__text">{name}</p>
 			<div className="bottle__wrapper">
 				<img
-					tabIndex={tabIndex}
 					onTouchStart={onTouchStart}
 					onTouchEnd={onTouchEnd}
 					onClick={handleClick}
