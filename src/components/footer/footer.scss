@@ -7,6 +7,9 @@
 	justify-content: center;
 	flex-direction: column;
 	background-color: var(--Others-Background);
+	a {
+		color: white;
+	}
 	&__wrapper {
 		position: relative;
 		top: 0px;
@@ -16,8 +19,12 @@
 		padding: 10px;
 		justify-content: center;
 		flex-direction: column;
-		a {
-			color: white;
-		}
+	}
+	&__sou {
+		margin-top: 50px;
+		padding: 10px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
 	}
 }

@@ -12,6 +12,11 @@ export default function Footer() {
 					LinkedIn
 				</a>
 			</div>
+			<p className="footer__sou">
+				When creating the website, the following were used:
+				<a href="https://www.thecocktaildb.com/">TheCocktailDB</a>
+				<a href="https://www.mediawiki.org/wiki/MediaWiki">MediaWiki</a>
+			</p>
 		</div>
 	);
 }

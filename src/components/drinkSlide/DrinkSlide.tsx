@@ -171,10 +171,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient2 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient2}
 							{drinkDetails.strMeasure2 && ' : '}
 							{drinkDetails.strMeasure2}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient2}
+							/>
 						</p>
 					)}
 				</p>
@@ -182,10 +186,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient3 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient3}
 							{drinkDetails.strMeasure3 && ' : '}
 							{drinkDetails.strMeasure3}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient3}
+							/>
 						</p>
 					)}
 				</p>
@@ -193,10 +201,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient4 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient4}
 							{drinkDetails.strMeasure4 && ' : '}
 							{drinkDetails.strMeasure4}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient4}
+							/>
 						</p>
 					)}
 				</p>
@@ -204,10 +216,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient5 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient5}
 							{drinkDetails.strMeasure5 && ' : '}
 							{drinkDetails.strMeasure5}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient5}
+							/>
 						</p>
 					)}
 				</p>
@@ -215,10 +231,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient6 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient6}
 							{drinkDetails.strMeasure6 && ' : '}
 							{drinkDetails.strMeasure6}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient6}
+							/>
 						</p>
 					)}
 				</p>
@@ -226,10 +246,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient7 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient7}
 							{drinkDetails.strMeasure7 && ' : '}
 							{drinkDetails.strMeasure7}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient7}
+							/>
 						</p>
 					)}
 				</p>
@@ -237,10 +261,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient8 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient8}
 							{drinkDetails.strMeasure8 && ' : '}
 							{drinkDetails.strMeasure8}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient8}
+							/>
 						</p>
 					)}
 				</p>
@@ -248,10 +276,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient9 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient9}
 							{drinkDetails.strMeasure9 && ' : '}
 							{drinkDetails.strMeasure9}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient9}
+							/>
 						</p>
 					)}
 				</p>
@@ -259,10 +291,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient10 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient10}
 							{drinkDetails.strMeasure10 && ' : '}
 							{drinkDetails.strMeasure10}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient10}
+							/>
 						</p>
 					)}
 				</p>
@@ -270,10 +306,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient11 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient11}
 							{drinkDetails.strMeasure11 && ' : '}
 							{drinkDetails.strMeasure11}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient11}
+							/>
 						</p>
 					)}
 				</p>
@@ -281,10 +321,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient12 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient12}
 							{drinkDetails.strMeasure12 && ' : '}
 							{drinkDetails.strMeasure12}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient12}
+							/>
 						</p>
 					)}
 				</p>
@@ -292,10 +336,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient13 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient13}
 							{drinkDetails.strMeasure13 && ' : '}
 							{drinkDetails.strMeasure13}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient13}
+							/>
 						</p>
 					)}
 				</p>
@@ -303,10 +351,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient14 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient14}
 							{drinkDetails.strMeasure14 && ' : '}
 							{drinkDetails.strMeasure14}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient14}
+							/>
 						</p>
 					)}
 				</p>
@@ -314,10 +366,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient15 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient15}
 							{drinkDetails.strMeasure15 && ' : '}
 							{drinkDetails.strMeasure15}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient15}
+							/>
 						</p>
 					)}
 				</p>
