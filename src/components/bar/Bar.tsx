@@ -4,6 +4,7 @@ import Shelf from '../shelf/Shelf';
 import Popup from '../popup/Popup';
 import Barmen from '../barmen/Barmen';
 import CoctailsPopup from '../cocktailsPopup/CoctailsPopup';
+import axios from 'axios';
 
 export default function Bar({ className = '' }) {
 	const names1: string[] = [
@@ -95,6 +96,11 @@ export default function Bar({ className = '' }) {
 		setPopup(false);
 		setPopupCoctails(true);
 	};
+	const BarmenCoctailsFunction = async () => {
+		setCocktails('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+		setPopup(false);
+		setPopupCoctails(true);
+	};
 
 	return (
 		<div className={className + ' bar'}>
@@ -141,7 +147,7 @@ export default function Bar({ className = '' }) {
 				/>
 			</div>
 			<div className="bar__bar-bootom">
-				<Barmen className="bar__barmen" />
+				<Barmen func={BarmenCoctailsFunction} className="bar__barmen" />
 				<img
 					className="bar__counter"
 					src="./Images/Component bar.png"

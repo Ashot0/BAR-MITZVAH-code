@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar, A11y, Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -30,7 +30,6 @@ const DrinksSlider: React.FC<IDrinksSliderProps> = ({
 			modules={[Scrollbar, A11y, Navigation]}
 			spaceBetween={50}
 			slidesPerView={1}
-			// autoHeight={true}
 			navigation={true}
 			scrollbar={{ draggable: true }}
 			className={className + ' drinks-slider'}

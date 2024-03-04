@@ -2,10 +2,16 @@ import React from 'react';
 
 import './barmen.scss';
 
-const Barmen = ({ className = '' }) => {
+interface IBarmen {
+	className?: string;
+	func: () => void;
+}
+
+const Barmen: React.FC<IBarmen> = ({ className = '', func }) => {
 	const playSound = () => {
 		const audio = new Audio('./Sounds/barmen.mp3');
 		audio.play();
+		func();
 	};
 
 	const onClickTransparent = () => {};

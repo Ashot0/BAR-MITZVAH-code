@@ -1,12 +1,10 @@
 .drinks-slider {
 	.swiper-wrapper {
-		// height: fit-content;
 	}
 	.swiper-button-next,
 	.swiper-button-prev {
 		width: 50px;
 		height: 50px;
-		// background-color: red;
 		color: var(--colors-2);
 		display: flex;
 		justify-content: center;
@@ -16,12 +14,13 @@
 		top: 50%;
 		transform: translateY(-50%);
 	}
-
 	.swiper-button-next {
 		right: 0;
 	}
-
 	.swiper-button-prev {
 		left: 0;
+	}
+	.swiper-button-disabled {
+		visibility: hidden;
 	}
 }
