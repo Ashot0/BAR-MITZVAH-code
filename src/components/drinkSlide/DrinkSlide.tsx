@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import './drink-slide.scss';
+import CoctailsPopup from '../cocktailsPopup/CoctailsPopup';
+import IngridientPopup from '../ingridientPopup/IngridientPopup';
 
 interface IDrinkSlideProps {
 	className?: string;
@@ -154,10 +156,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 					{drinkDetails?.strIngredient1 == null ? (
 						''
 					) : (
-						<p>
+						<p className="drink-slide__ingridient">
 							{drinkDetails.strIngredient1}
 							{drinkDetails.strMeasure1 && ' : '}
 							{drinkDetails.strMeasure1}
+							<IngridientPopup
+								className="drink-slide__ingridient-popup"
+								imageLink={drinkDetails.strIngredient1}
+							/>
 						</p>
 					)}
 				</p>

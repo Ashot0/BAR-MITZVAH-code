@@ -29,6 +29,18 @@
 		width: 50vw;
 		text-align: start;
 	}
+	&__ingridient-popup {
+		// display: none;
+	}
+	&__ingridient {
+		position: relative;
+		width: fit-content;
+		&:hover {
+			.drink-slide__ingridient {
+				display: block;
+			}
+		}
+	}
 }
 
 @media (max-width: 800px) {
