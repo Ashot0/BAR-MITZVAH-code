@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Scrollbar, A11y, Navigation } from 'swiper/modules';
+import { Keyboard, Scrollbar, A11y, Navigation } from 'swiper/modules';
 import 'swiper/css';
 
 import './drinks-slider.scss';
@@ -27,10 +27,13 @@ const DrinksSlider: React.FC<IDrinksSliderProps> = ({
 }) => {
 	return (
 		<Swiper
-			modules={[Scrollbar, A11y, Navigation]}
+			modules={[Keyboard, Scrollbar, A11y, Navigation]}
 			spaceBetween={50}
 			slidesPerView={1}
 			navigation={true}
+			keyboard={{
+				enabled: true,
+			}}
 			scrollbar={{ draggable: true }}
 			className={className + ' drinks-slider'}
 		>
