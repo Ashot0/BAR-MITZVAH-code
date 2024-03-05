@@ -21,7 +21,9 @@ a:focus,
 a:active {
 	outline: none;
 }
-
+img {
+	user-select: none;
+}
 nav,
 footer,
 header,

@@ -4,6 +4,7 @@ import './popup.scss';
 import axios from 'axios';
 import WikiSearch from '../../services/WikiSearch';
 import CloseBtn from '../closeBtn/CloseBtn';
+import LoadCircle from '../loadCircle/LoadCircle';
 
 interface IPopupProps {
 	className?: string;
@@ -34,17 +35,22 @@ const Popup: React.FC<IPopupProps> = ({
 	const [nameDescription, setNameDescription] = useState('');
 	const [strDescription, setStrDescription] = useState('');
 	const [completeLoad, setCompleteLoad] = useState(false);
+	const [loader, setLoader] = useState(false);
 
 	const PopupDescription = async () => {
+		setLoader(true);
 		const reduse: Response = await axios.get(descriptionLink);
 		setNameDescription(reduse.data.ingredients[0].strIngredient);
 		setStrDescription(reduse.data.ingredients[0].strDescription);
 		if (strDescription == null) {
 			const response: string = await WikiSearch(nameDescription);
 			setStrDescription(await response);
+			setLoader(false);
 		}
 		if (completeLoad === false) {
 			setCompleteLoad(!completeLoad);
+		} else {
+			setLoader(false);
 		}
 	};
 	useEffect(() => {
@@ -91,6 +97,7 @@ const Popup: React.FC<IPopupProps> = ({
 
 	return (
 		<div className={className + ' popup'}>
+			{loader && <LoadCircle />}
 			<button onClick={close} className="popup__close-btn" type="button">
 				<CloseBtn className="popup__close-img" />
 			</button>
@@ -104,8 +111,21 @@ const Popup: React.FC<IPopupProps> = ({
 				>
 					Coctails
 				</button>
-
-				{!full ? (
+			</p>
+			<div className="popup__text-wrapper">
+				<p onClick={handleFullText} className="popup__text">
+					{displayText ? (
+						<span className={full ? '' : 'popup__text_pointer'}>
+							{displayText}
+						</span>
+					) : (
+						' '
+					)}
+					{!full ? <span className="popup__line">|</span> : ' '}
+				</p>
+			</div>
+			{!full ? (
+				<div className="popup__wrapper-open-text">
 					<button
 						className="popup__open-text"
 						type="button"
@@ -113,20 +133,10 @@ const Popup: React.FC<IPopupProps> = ({
 					>
 						Open full text
 					</button>
-				) : (
-					' '
-				)}
-			</p>
-			<p onClick={handleFullText} className="popup__text">
-				{displayText ? (
-					<span className={full ? '' : 'popup__text_pointer'}>
-						{displayText}
-					</span>
-				) : (
-					' '
-				)}
-				{!full ? <span className="popup__line">|</span> : ' '}
-			</p>
+				</div>
+			) : (
+				' '
+			)}
 		</div>
 	);
 };

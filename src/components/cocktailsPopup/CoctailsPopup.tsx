@@ -4,6 +4,7 @@ import axios from 'axios';
 import './coctails-popup.scss';
 import DrinksSlider from '../drinksSlider/DrinksSlider';
 import CloseBtn from '../closeBtn/CloseBtn';
+import LoadCircle from '../loadCircle/LoadCircle';
 interface ICoctailsPopupProps {
 	className?: string;
 	cocktailsLink: string;
@@ -29,11 +30,14 @@ const CoctailsPopup: React.FC<ICoctailsPopupProps> = ({
 	close,
 }) => {
 	const [drinks, setDrinks] = useState<IDrink[]>([]);
+	const [loader, setLoader] = useState(false);
 
 	const PopupDrinks = async () => {
+		setLoader(true);
 		try {
 			const response = await axios.get<ResponseData>(cocktailsLink);
 			setDrinks(response.data.drinks);
+			setLoader(false);
 		} catch (error) {
 			if (axios.isAxiosError(error) && error.response?.status === 429) {
 				await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -48,6 +52,7 @@ const CoctailsPopup: React.FC<ICoctailsPopupProps> = ({
 	}, []);
 	return (
 		<div className={className + ' coctails-popup'}>
+			{loader && <LoadCircle />}
 			<button
 				onClick={close}
 				className="coctails-popup__close-btn"

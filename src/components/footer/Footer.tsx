@@ -2,7 +2,7 @@ import React from 'react';
 
 import './footer.scss';
 
-export default function Footer() {
+export default function Footer({ menuOpen }: { menuOpen: () => void }) {
 	return (
 		<div className="footer">
 			<div className="footer__wrapper">
@@ -19,6 +19,13 @@ export default function Footer() {
 				<a href="https://www.pngwing.com/ru">PngWing</a>
 				<a href="https://www.klipartz.com/ru">Klipartz</a>
 			</p>
+			<div className="footer__menu-open" onClick={menuOpen}>
+				<img
+					className="footer__menu-image"
+					src="./Images/menu.png"
+					alt=""
+				/>
+			</div>
 		</div>
 	);
 }

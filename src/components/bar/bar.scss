@@ -3,6 +3,13 @@
 	height: max-content;
 	position: relative;
 	margin: 10px 0;
+	&__close-wall {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 69;
+	}
 	&__bar-top {
 		min-height: 600px;
 		width: 100%;

@@ -53,6 +53,7 @@ interface ICoctail {
 	strMeasure13?: string;
 	strMeasure14?: string;
 	strMeasure15?: string;
+	measureKey?: string;
 }
 interface ICoctailsArray extends Array<ICoctail> {}
 
@@ -87,6 +88,10 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 	useEffect(() => {
 		PopupDrinks();
 	}, []);
+
+	function findElementByKey<T>(obj: T, key: string): T[keyof T] | undefined {
+		return obj[key as keyof T];
+	}
 
 	useEffect(() => {
 		console.log(drinkDetails);
@@ -152,11 +157,40 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 				)}
 			</div>
 			<div className="drink-slide__ingridients">
-				<p>
+				{Object.entries(drinkDetails || {}).map(([key, value]) => {
+					if (key.startsWith('strIngredient') && value) {
+						const measureKey = `strMeasure${key.slice(13)}`;
+						const measureValue = findElementByKey(
+							drinkDetails,
+							measureKey
+						);
+						return (
+							<div
+								className="drink-slide__ingridient-wrapper"
+								key={key}
+							>
+								<span className="drink-slide__ingridient">
+									{measureValue ? measureValue + '  ' : ''}
+									{value}
+									<IngridientPopup
+										className="drink-slide__ingridient-popup"
+										imageLink={value}
+									/>
+								</span>
+							</div>
+						);
+					}
+					return null;
+				})}
+			</div>
+
+			<span></span>
+			{/* <div className="drink-slide__ingridients">
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient1 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient1}
 							{drinkDetails.strMeasure1 && ' : '}
 							{drinkDetails.strMeasure1}
@@ -164,14 +198,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient1}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient2 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient2}
 							{drinkDetails.strMeasure2 && ' : '}
 							{drinkDetails.strMeasure2}
@@ -179,14 +213,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient2}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient3 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient3}
 							{drinkDetails.strMeasure3 && ' : '}
 							{drinkDetails.strMeasure3}
@@ -194,14 +228,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient3}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient4 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient4}
 							{drinkDetails.strMeasure4 && ' : '}
 							{drinkDetails.strMeasure4}
@@ -209,14 +243,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient4}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient5 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient5}
 							{drinkDetails.strMeasure5 && ' : '}
 							{drinkDetails.strMeasure5}
@@ -224,14 +258,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient5}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient6 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient6}
 							{drinkDetails.strMeasure6 && ' : '}
 							{drinkDetails.strMeasure6}
@@ -239,14 +273,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient6}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient7 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient7}
 							{drinkDetails.strMeasure7 && ' : '}
 							{drinkDetails.strMeasure7}
@@ -254,14 +288,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient7}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient8 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient8}
 							{drinkDetails.strMeasure8 && ' : '}
 							{drinkDetails.strMeasure8}
@@ -269,14 +303,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient8}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient9 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient9}
 							{drinkDetails.strMeasure9 && ' : '}
 							{drinkDetails.strMeasure9}
@@ -284,14 +318,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient9}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient10 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient10}
 							{drinkDetails.strMeasure10 && ' : '}
 							{drinkDetails.strMeasure10}
@@ -299,14 +333,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient10}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient11 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient11}
 							{drinkDetails.strMeasure11 && ' : '}
 							{drinkDetails.strMeasure11}
@@ -314,14 +348,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient11}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient12 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient12}
 							{drinkDetails.strMeasure12 && ' : '}
 							{drinkDetails.strMeasure12}
@@ -329,14 +363,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient12}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient13 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient13}
 							{drinkDetails.strMeasure13 && ' : '}
 							{drinkDetails.strMeasure13}
@@ -344,14 +378,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient13}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient14 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient14}
 							{drinkDetails.strMeasure14 && ' : '}
 							{drinkDetails.strMeasure14}
@@ -359,14 +393,14 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient14}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-				<p>
+				</span>
+				<span className="drink-slide__ingridient-wrapper">
 					{drinkDetails?.strIngredient15 == null ? (
 						''
 					) : (
-						<p className="drink-slide__ingridient">
+						<span className="drink-slide__ingridient">
 							{drinkDetails.strIngredient15}
 							{drinkDetails.strMeasure15 && ' : '}
 							{drinkDetails.strMeasure15}
@@ -374,10 +408,10 @@ const DrinkSlide: React.FC<IDrinkSlideProps> = ({
 								className="drink-slide__ingridient-popup"
 								imageLink={drinkDetails.strIngredient15}
 							/>
-						</p>
+						</span>
 					)}
-				</p>
-			</div>
+				</span>
+			</div> */}
 		</div>
 	);
 };

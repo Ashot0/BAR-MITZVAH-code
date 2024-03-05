@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './bar.scss';
 import Shelf from '../shelf/Shelf';
 import Popup from '../popup/Popup';
@@ -6,14 +6,24 @@ import Barmen from '../barmen/Barmen';
 import CoctailsPopup from '../cocktailsPopup/CoctailsPopup';
 import axios from 'axios';
 
-export default function Bar({ className = '' }) {
+interface IBarProps {
+	className?: string;
+	menuLink: string;
+	menuOpen: () => void;
+}
+
+const Bar: React.FC<IBarProps> = ({
+	className = '',
+	menuLink = '',
+	menuOpen,
+}) => {
 	const names1: string[] = [
 		'Light rum',
 		'Dark rum',
 		'Sweet Vermouth',
 		'Strawberry schnapps',
-		'Apricot brandy',
-		'Triple sec',
+		'Brandy',
+		'Campari',
 		'Vodka',
 		'Aperol',
 		'Sambuca',
@@ -23,7 +33,7 @@ export default function Bar({ className = '' }) {
 		'Tequila',
 		'Rum',
 		'Southern Comfort',
-		'Lemon vodka',
+		'Root beer',
 		'Blended whiskey',
 		'Dry Vermouth',
 	];
@@ -51,9 +61,9 @@ export default function Bar({ className = '' }) {
 	const names3: string[] = [
 		'Cherry brandy',
 		'Coffee liqueur',
-		'Añejo rum',
+		'Blue curacao',
 		'Irish whiskey',
-		'Creme de Cacao',
+		'Galliano',
 		'Sloe gin',
 		'Peach Vodka',
 		'Spiced rum',
@@ -73,6 +83,8 @@ export default function Bar({ className = '' }) {
 	const [image, setImage] = useState('');
 	const [description, setDescription] = useState('');
 	const [cocktails, setCocktails] = useState('');
+	const prevValueRef = useRef<string | null>(null);
+
 	const PopupClose = () => {
 		setPopup(!popup);
 	};
@@ -96,14 +108,47 @@ export default function Bar({ className = '' }) {
 		setPopup(false);
 		setPopupCoctails(true);
 	};
-	const BarmenCoctailsFunction = async () => {
-		setCocktails('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+	// const BarmenCoctailsFunction = async () => {
+	// 	setCocktails('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+	// 	setPopup(false);
+	// 	setPopupCoctails(true);
+	// };
+	const CloseWallFunction = () => {
 		setPopup(false);
-		setPopupCoctails(true);
+		setPopupCoctails(false);
 	};
+
+	useEffect(() => {
+		if (
+			prevValueRef.current !== null &&
+			prevValueRef.current !== menuLink
+		) {
+			CloseWallFunction();
+			setCocktails(menuLink);
+			setPopupCoctails(true);
+		}
+		prevValueRef.current = menuLink;
+	}, [menuLink]);
 
 	return (
 		<div className={className + ' bar'}>
+			{popup ? (
+				<div
+					onClick={CloseWallFunction}
+					className="bar__close-wall"
+				></div>
+			) : (
+				<>
+					{popupCoctails ? (
+						<div
+							onClick={CloseWallFunction}
+							className="bar__close-wall"
+						></div>
+					) : (
+						''
+					)}
+				</>
+			)}
 			<div className="bar__bar-top">
 				<div className="bar__shelves shelves">
 					{popup && (
@@ -147,7 +192,7 @@ export default function Bar({ className = '' }) {
 				/>
 			</div>
 			<div className="bar__bar-bootom">
-				<Barmen func={BarmenCoctailsFunction} className="bar__barmen" />
+				<Barmen func={menuOpen} className="bar__barmen" />
 				<img
 					className="bar__counter"
 					src="./Images/Component bar.png"
@@ -156,4 +201,5 @@ export default function Bar({ className = '' }) {
 			</div>
 		</div>
 	);
-}
+};
+export default Bar;

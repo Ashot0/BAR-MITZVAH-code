@@ -31,10 +31,12 @@ const DrinksSlider: React.FC<IDrinksSliderProps> = ({
 			spaceBetween={50}
 			slidesPerView={1}
 			navigation={true}
+			scrollbar={{
+				hide: true,
+			}}
 			keyboard={{
 				enabled: true,
 			}}
-			scrollbar={{ draggable: true }}
 			className={className + ' drinks-slider'}
 		>
 			{drinksArray.map((drink: IDrink) => (

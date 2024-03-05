@@ -1,13 +1,20 @@
 .drink-slide {
+	padding-bottom: 70px;
+	position: relative;
 	min-height: fit-content;
+	max-height: 100%;
+	max-height: 80vh;
+	max-height: 60vw;
+	max-height: 550px;
+	overflow-y: auto;
+	overflow-x: hidden;
 	margin: 10px 0;
 	padding: 20px;
 	border-radius: 50px;
-	border: 2px solid var(--Others-Background);
+	border: 0px solid var(--Others-Background);
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
-	height: fit-content;
 	&__img {
 		border-radius: 50px;
 		max-width: 20vw;
@@ -24,17 +31,29 @@
 		}
 	}
 	&__ingridients {
+		margin: 15px 5% 0 5%;
+		width: 90%;
+		padding-bottom: 50px;
 		display: flex;
-		flex-direction: column;
-		width: 50vw;
-		text-align: start;
+		gap: 15px;
+		flex-wrap: wrap;
 	}
-	// &__ingridient-popup {
-	// 	// display: none;
-	// }
+	&__ingridient-wrapper {
+		display: block;
+
+		padding: 5px;
+		// flex: 1 1 40%;
+		border-radius: 10px;
+		padding: 0 50px;
+		width: max-content;
+	}
 	&__ingridient {
 		position: relative;
-		width: fit-content;
+		width: 100%;
+		max-height: 100%;
+		&:first-child {
+			text-shadow: 0px 0px 10px black;
+		}
 		&:hover {
 			.drink-slide__ingridient {
 				display: block;
