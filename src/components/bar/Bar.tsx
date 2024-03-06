@@ -107,11 +107,11 @@ const Bar: React.FC<IBarProps> = ({
 		setPopup(false);
 		setPopupCoctails(true);
 	};
-	// const BarmenCoctailsFunction = async () => {
-	// 	setCocktails('https://www.thecocktaildb.com/api/json/v1/1/random.php');
-	// 	setPopup(false);
-	// 	setPopupCoctails(true);
-	// };
+	const BarmenCoctailsFunction = async () => {
+		setCocktails('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+		setPopup(false);
+		setPopupCoctails(true);
+	};
 	const CloseWallFunction = () => {
 		setPopup(false);
 		setPopupCoctails(false);
@@ -191,7 +191,11 @@ const Bar: React.FC<IBarProps> = ({
 				/>
 			</div>
 			<div className="bar__bar-bootom">
-				<Barmen func={menuOpen} className="bar__barmen" />
+				<Barmen
+					func={menuOpen}
+					random={BarmenCoctailsFunction}
+					className="bar__barmen"
+				/>
 				<img
 					className="bar__counter"
 					src="./Images/Component bar.png"

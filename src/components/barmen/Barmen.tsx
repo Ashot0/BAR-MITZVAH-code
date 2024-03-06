@@ -5,18 +5,19 @@ import './barmen.scss';
 interface IBarmen {
 	className?: string;
 	func: () => void;
+	random: () => void;
 }
 
-const Barmen: React.FC<IBarmen> = ({ className = '', func }) => {
+const Barmen: React.FC<IBarmen> = ({ className = '', func, random }) => {
 	const playSound = () => {
 		const audio = new Audio('./Sounds/barmen.mp3');
 		audio.play();
-		func();
+		random();
 	};
 
 	const onClickTransparent = () => {};
 	const onClickOpaque = () => {
-		playSound();
+		func();
 	};
 
 	const handleClick = (event: React.MouseEvent<HTMLImageElement>) => {
@@ -40,6 +41,12 @@ const Barmen: React.FC<IBarmen> = ({ className = '', func }) => {
 		<div className={className + ' barmen'}>
 			<img
 				onClick={handleClick}
+				className="barmen__menu"
+				src="./Images/menu.png"
+				alt=""
+			/>
+			<img
+				onClick={playSound}
 				className="barmen__image"
 				src="./Images/barmen.png"
 				alt=""

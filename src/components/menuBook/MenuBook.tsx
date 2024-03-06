@@ -40,7 +40,11 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 			const response = await axios.get(
 				'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'
 			);
-			setCategory(response.data.drinks);
+			const sortedArray = await response.data.drinks.sort(
+				(a: Category, b: Category) =>
+					a.strCategory.localeCompare(b.strCategory)
+			);
+			setCategory(sortedArray);
 		} catch (error) {
 			console.error('Error fetching category:', error);
 		}
@@ -51,7 +55,10 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 			const response = await axios.get(
 				'https://www.thecocktaildb.com/api/json/v1/1/list.php?g=list'
 			);
-			setGlasses(response.data.drinks);
+			const sortedArray = await response.data.drinks.sort(
+				(a: Glasses, b: Glasses) => a.strGlass.localeCompare(b.strGlass)
+			);
+			setGlasses(sortedArray);
 		} catch (error) {
 			console.error('Error fetching glasses:', error);
 		}
@@ -62,7 +69,11 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 			const response = await axios.get(
 				'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
 			);
-			setIngredients(response.data.drinks);
+			const sortedArray = response.data.drinks.sort(
+				(a: Ingredient, b: Ingredient) =>
+					a.strIngredient1.localeCompare(b.strIngredient1)
+			);
+			setIngredients(sortedArray);
 		} catch (error) {
 			console.error('Error fetching ingredients:', error);
 		}
@@ -73,7 +84,11 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 			const response = await axios.get(
 				'https://www.thecocktaildb.com/api/json/v1/1/list.php?a=list'
 			);
-			setAlcoholic(response.data.drinks);
+			const sortedArray = await response.data.drinks.sort(
+				(a: Alcoholic, b: Alcoholic) =>
+					a.strAlcoholic.localeCompare(b.strAlcoholic)
+			);
+			setAlcoholic(sortedArray);
 		} catch (error) {
 			console.error('Error fetching alcoholic:', error);
 		}
@@ -112,6 +127,13 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 		};
 	}, []);
 
+	useEffect(() => {
+		document.body.style.overflow = 'hidden';
+		return () => {
+			document.body.style.overflow = 'auto';
+		};
+	}, []);
+
 	return (
 		<div className="menu-book menu-book_position">
 			<Swiper
@@ -120,14 +142,35 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 				modules={[EffectCards]}
 				className="mySwiper menu-book__slider"
 			>
-				<SwiperSlide className="menu-book__slide">
+				<SwiperSlide className="menu-book__slide menu-book__slide_1">
 					<img
 						className="menu-book__image"
 						src="./Images/menu.png"
 						alt=""
 					/>
 				</SwiperSlide>
-				<SwiperSlide className="menu-book__slide">
+				<SwiperSlide className="menu-book__slide menu-book__slide_2">
+					<p className="menu-book__title_2">
+						Search coctail by name:
+						<input className="menu-book__input" type="text" />
+					</p>
+					<div className="menu-book__slide-wrapper">
+						{/* {category &&
+							category.map((item, index) => (
+								<p
+									className="menu-book__slide-text"
+									onClick={() =>
+										menuFunc('c', item.strCategory)
+									}
+									key={index}
+								>
+									{item.strCategory}
+								</p>
+							))} */}
+						<p>IN PROCESS</p>
+					</div>
+				</SwiperSlide>
+				<SwiperSlide className="menu-book__slide menu-book__slide_3">
 					<p>Category</p>
 					<div className="menu-book__slide-wrapper">
 						{category &&
@@ -144,7 +187,7 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 							))}
 					</div>
 				</SwiperSlide>
-				<SwiperSlide className="menu-book__slide">
+				<SwiperSlide className="menu-book__slide menu-book__slide_4">
 					<p>Glasses</p>
 					<div className="menu-book__slide-wrapper">
 						{glasses &&
@@ -159,7 +202,7 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 							))}
 					</div>
 				</SwiperSlide>
-				<SwiperSlide className="menu-book__slide">
+				<SwiperSlide className="menu-book__slide menu-book__slide_5">
 					<p>Ingredient</p>
 					<div className="menu-book__slide-wrapper">
 						{ingredients &&
@@ -176,7 +219,7 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 							))}
 					</div>
 				</SwiperSlide>
-				<SwiperSlide className="menu-book__slide">
+				<SwiperSlide className="menu-book__slide menu-book__slide_6">
 					<p>Alcoholic</p>
 					<div className="menu-book__slide-wrapper">
 						{alcoholic &&
@@ -184,7 +227,7 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 								<p
 									className="menu-book__slide-text"
 									onClick={() =>
-										menuFunc('c', item.strAlcoholic)
+										menuFunc('a', item.strAlcoholic)
 									}
 									key={index}
 								>
@@ -193,8 +236,8 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 							))}
 					</div>
 				</SwiperSlide>
-				<SwiperSlide className="menu-book__slide">
-					<div>
+				<SwiperSlide className="menu-book__slide menu-book__slide_7">
+					<div className="menu-book__sub">
 						<p>Made by Illia Golovan</p>
 						<p>
 							<a href="https://github.com/Ashot0">Github</a>
@@ -206,30 +249,31 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 						</p>
 						<p>
 							When creating the website, the following were used:
-							<p>
-								<a href="https://www.thecocktaildb.com/">
-									TheCocktailDB
-								</a>
-							</p>
-							<p>
-								<a href="https://www.mediawiki.org/wiki/MediaWiki">
-									MediaWiki
-								</a>
-							</p>
-							<p>
-								<a href="https://www.pngwing.com/ru">PngWing</a>
-							</p>
-							<p>
-								<a href="https://www.klipartz.com/ru">
-									Klipartz
-								</a>
-							</p>
+						</p>
+						<p>
+							<a href="https://www.thecocktaildb.com/">
+								TheCocktailDB
+							</a>
+						</p>
+						<p>
+							<a href="https://www.mediawiki.org/wiki/MediaWiki">
+								MediaWiki
+							</a>
+						</p>
+						<p>
+							<a href="https://www.pngwing.com/ru">PngWing</a>
+						</p>
+						<p>
+							<a href="https://www.klipartz.com/ru">Klipartz</a>
 						</p>
 					</div>
 				</SwiperSlide>
-				{/* <SwiperSlide className="menu-book__slide">Slide 7</SwiperSlide>
-				<SwiperSlide className="menu-book__slide">Slide 8</SwiperSlide>
-				<SwiperSlide className="menu-book__slide">Slide 9</SwiperSlide> */}
+				{/* <SwiperSlide className="menu-book__slide menu-book__slide_8">
+					Slide 8
+				</SwiperSlide>
+				<SwiperSlide className="menu-book__slide menu-book__slide_9">
+					Slide 9
+				</SwiperSlide> */}
 			</Swiper>
 		</div>
 	);

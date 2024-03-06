@@ -1,23 +1,36 @@
 .menu-book {
+	&_position {
+		position: fixed;
+		top: 10px;
+		left: 0;
+		z-index: 90;
+		width: 99vw;
+		overflow: hidden;
+		height: 110vh;
+	}
+	&__slider {
+		min-width: 600px;
+		min-height: 600px;
+		width: 40%;
+		height: 100%;
+	}
 	&__slide-wrapper {
 		display: flex;
 		flex-wrap: wrap;
 		overflow-x: hidden;
 		overflow-y: auto;
-
+		padding: 15px;
 		gap: 15px;
 	}
 	&__slide-text {
-		text-shadow: 0px 0px 10px black;
 		cursor: pointer;
-		font-size: 20px;
-		padding: 3.5px;
+		font-size: 25px;
+		padding: 5px 10px;
 		margin: 0.5px;
-		border-radius: 8px;
+		border-radius: 60px;
 		background-color: rgba($color: #ffffff, $alpha: 0.3);
-		border: 2px solid rgba(0, 0, 0, 0.419);
 		&:hover {
-			text-shadow: 0px 0px 20px black;
+			text-shadow: 0px 0px 20px rgb(255, 255, 255);
 		}
 	}
 	&__slide {
@@ -27,31 +40,8 @@
 		gap: 30px;
 		justify-content: center;
 		align-items: center;
-		padding: calc(1vw + 10px);
+		padding: 1vw;
 		height: 90vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		&:nth-child(1n) {
-			text-shadow: 0px 0px 5px rgb(127, 127, 127);
-		}
-	}
-	&__image {
-		width: 100%;
-		height: 100%;
-		object-fit: contain;
-	}
-	.swiper {
-		min-width: 600px;
-		min-height: 600px;
-		width: 40%;
-		height: 100%;
-	}
-
-	.swiper-slide {
-		display: flex;
-		align-items: center;
-		justify-content: center;
 		border-radius: 18px;
 		font-size: 22px;
 		font-weight: bold;
@@ -59,56 +49,89 @@
 		a {
 			color: #fff;
 		}
+		&_1 {
+			// background-color: rgb(206, 17, 17);
+		}
+		&_2 {
+			background-color: rgb(100, 35, 35);
+			justify-content: flex-start;
+			gap: 15px;
+			padding-top: 2vw;
+		}
+		&_3 {
+			background-color: rgb(58, 117, 166);
+			::-webkit-scrollbar {
+				background-color: rgb(18, 77, 126);
+				width: 8px;
+				border-radius: 5px;
+			}
+		}
+		&_4 {
+			background-color: rgb(69, 120, 98);
+			::-webkit-scrollbar {
+				background-color: rgb(29, 80, 58);
+				width: 8px;
+				border-radius: 5px;
+			}
+		}
+		&_5 {
+			background-color: rgb(184, 126, 50);
+			::-webkit-scrollbar {
+				background-color: rgb(144, 86, 10);
+				width: 8px;
+				border-radius: 5px;
+			}
+		}
+		&_6 {
+			background-color: rgb(51, 98, 39);
+			::-webkit-scrollbar {
+				background-color: rgb(11, 58, 0);
+				width: 8px;
+				border-radius: 5px;
+			}
+		}
+		&_7 {
+			background-color: rgb(198, 105, 105);
+			::-webkit-scrollbar {
+				background-color: rgb(158, 65, 65);
+				width: 8px;
+				border-radius: 5px;
+			}
+		}
+		&_8 {
+			background-color: rgb(54, 94, 77);
+		}
+		&_9 {
+			background-color: rgb(0, 68, 255);
+		}
+		&_0 {
+			background-color: rgb(218, 12, 218);
+		}
 	}
-
-	.swiper-slide:nth-child(1n) {
-		// background-color: rgb(206, 17, 17);
+	&__title {
+		&_2 {
+			display: flex;
+			gap: 15px;
+			align-items: center;
+		}
 	}
-
-	.swiper-slide:nth-child(2n) {
-		background-color: rgb(0, 140, 255);
+	&__input {
+		color: #fff;
+		font-size: 25px;
+		padding: 5px 10px;
+		border-radius: 60px;
+		background-color: rgba($color: #ffffff, $alpha: 0.3);
 	}
-
-	.swiper-slide:nth-child(3n) {
-		background-color: rgb(10, 184, 111);
+	&__image {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
 	}
-
-	.swiper-slide:nth-child(4n) {
-		background-color: rgb(211, 122, 7);
+	&__sub {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
 	}
-
-	.swiper-slide:nth-child(5n) {
-		background-color: rgb(118, 163, 12);
-	}
-
-	.swiper-slide:nth-child(6n) {
-		background-color: rgb(180, 10, 47);
-	}
-
-	.swiper-slide:nth-child(7n) {
-		background-color: rgb(35, 99, 19);
-	}
-
-	.swiper-slide:nth-child(8n) {
-		background-color: rgb(0, 68, 255);
-	}
-
-	.swiper-slide:nth-child(9n) {
-		background-color: rgb(218, 12, 218);
-	}
-
-	.swiper-slide:nth-child(10n) {
-		background-color: rgb(54, 94, 77);
-	}
-}
-.menu-book_position {
-	position: absolute;
-	top: 10px;
-	left: 0;
-	z-index: 90;
-	width: 99vw;
-	overflow: hidden;
-	height: 110vh;
 }
 
 @media (max-width: 800px) {
@@ -118,7 +141,7 @@
 				font-size: 50px;
 			}
 		}
-		.swiper {
+		&__slider {
 			overflow: hidden;
 			width: 100%;
 			height: 100%;
@@ -129,21 +152,16 @@
 
 @media (orientation: portrait) and (max-width: 800px) {
 	.menu-book {
-		.swiper {
-		}
 		&__slide {
 			height: 100vh;
 		}
 		&__slide-text {
-			cursor: pointer;
 			font-size: 50px;
-			padding: 10px;
+			padding: 20px;
 			margin: 10px;
-			border-radius: 10px;
-			border: 2px solid invert(white);
-			&:hover {
-				padding: 11px;
-			}
+		}
+		&__input {
+			font-size: 50px;
 		}
 	}
 }

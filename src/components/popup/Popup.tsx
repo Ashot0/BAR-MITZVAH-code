@@ -95,6 +95,13 @@ const Popup: React.FC<IPopupProps> = ({
 		setDisplayText(strDescription);
 	};
 
+	useEffect(() => {
+		document.body.style.overflow = 'hidden';
+		return () => {
+			document.body.style.overflow = 'auto';
+		};
+	}, []);
+
 	return (
 		<div className={className + ' popup'}>
 			{loader && <LoadCircle />}

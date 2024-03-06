@@ -1,5 +1,12 @@
 .barmen {
 	z-index: 40;
+	&__menu {
+		position: absolute;
+		left: -30%;
+		top: 40%;
+		width: 25%;
+		cursor: pointer;
+	}
 	&__image {
 		width: 100%;
 		cursor: pointer;

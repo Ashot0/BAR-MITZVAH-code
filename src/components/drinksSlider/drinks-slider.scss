@@ -33,9 +33,16 @@
 	.drinks-slider {
 		.swiper-button-next,
 		.swiper-button-prev {
+			overflow: visible;
 			&::after {
 				animation: pulse 2s infinite;
 			}
+		}
+		.swiper-button-next {
+			right: -10px;
+		}
+		.swiper-button-prev {
+			left: -10px;
 		}
 	}
 }
