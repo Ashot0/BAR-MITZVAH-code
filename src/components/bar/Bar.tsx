@@ -4,7 +4,6 @@ import Shelf from '../shelf/Shelf';
 import Popup from '../popup/Popup';
 import Barmen from '../barmen/Barmen';
 import CoctailsPopup from '../cocktailsPopup/CoctailsPopup';
-import axios from 'axios';
 
 interface IBarProps {
 	className?: string;
