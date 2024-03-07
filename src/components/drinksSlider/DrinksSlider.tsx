@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Keyboard, Scrollbar, A11y, Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -31,11 +31,7 @@ const DrinksSlider: React.FC<IDrinksSliderProps> = ({
 			spaceBetween={50}
 			slidesPerView={1}
 			navigation={true}
-			scrollbar={
-				{
-					// hide: true,
-				}
-			}
+			scrollbar={true}
 			keyboard={{
 				enabled: true,
 			}}

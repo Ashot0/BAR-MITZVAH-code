@@ -20,9 +20,6 @@ interface IDrink {
 interface ResponseData {
 	drinks: IDrink[];
 }
-interface Response {
-	data: ResponseData;
-}
 
 const CoctailsPopup: React.FC<ICoctailsPopupProps> = ({
 	className = '',
@@ -49,16 +46,7 @@ const CoctailsPopup: React.FC<ICoctailsPopupProps> = ({
 	};
 
 	useEffect(() => {
-		if (
-			window.innerWidth < 799 &&
-			/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-				navigator.userAgent
-			)
-		) {
-			document.body.style.overflow = 'auto';
-		} else {
-			document.body.style.overflow = 'hidden';
-		}
+		document.body.style.overflow = 'hidden';
 		return () => {
 			document.body.style.overflow = 'auto';
 		};

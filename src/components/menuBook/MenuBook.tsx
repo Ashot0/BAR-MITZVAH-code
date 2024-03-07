@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -6,7 +6,6 @@ import 'swiper/css/effect-cards';
 import './menu-book.scss';
 
 import { EffectCards } from 'swiper/modules';
-import axios from 'axios';
 import useBookCategory from '../../hooks/useBookCategory';
 import useSearchCocktails from '../../hooks/useSearchCocktails';
 
@@ -29,11 +28,6 @@ interface Alcoholic {
 interface IMenuBookProps {
 	func: (Link: string) => void;
 	menuOpen: () => void;
-}
-
-interface Cocktail {
-	idDrink: string;
-	strDrink: string;
 }
 
 const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
