@@ -110,13 +110,20 @@
 	}
 	&__title {
 		&_2 {
+			width: 100%;
 			display: flex;
 			gap: 15px;
 			align-items: center;
+			justify-content: center;
+			text-wrap: nowrap;
+			flex-wrap: wrap;
 		}
 	}
 	&__input {
 		color: #fff;
+		&::placeholder {
+			color: #fff;
+		}
 		font-size: 25px;
 		padding: 5px 10px;
 		border-radius: 60px;

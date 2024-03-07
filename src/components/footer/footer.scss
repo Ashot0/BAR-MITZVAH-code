@@ -32,8 +32,7 @@
 		display: none;
 	}
 }
-
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 1/2) {
 	.footer {
 		&__menu-open {
 			padding: 5px 0;

@@ -7,6 +7,8 @@ import './menu-book.scss';
 
 import { EffectCards } from 'swiper/modules';
 import axios from 'axios';
+import useBookCategory from '../../hooks/useBookCategory';
+import useSearchCocktails from '../../hooks/useSearchCocktails';
 
 interface Category {
 	strCategory: string;
@@ -29,77 +31,28 @@ interface IMenuBookProps {
 	menuOpen: () => void;
 }
 
+interface Cocktail {
+	idDrink: string;
+	strDrink: string;
+}
+
 const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
-	const [category, setCategory] = useState<Category[]>();
-	const [glasses, setGlasses] = useState<Glasses[]>();
-	const [ingredients, setIngredients] = useState<Ingredient[]>();
-	const [alcoholic, setAlcoholic] = useState<Alcoholic[]>();
-
-	const FetchCategory = async () => {
-		try {
-			const response = await axios.get(
-				'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list'
-			);
-			const sortedArray = await response.data.drinks.sort(
-				(a: Category, b: Category) =>
-					a.strCategory.localeCompare(b.strCategory)
-			);
-			setCategory(sortedArray);
-		} catch (error) {
-			console.error('Error fetching category:', error);
-		}
-	};
-
-	const FetchGlasses = async () => {
-		try {
-			const response = await axios.get(
-				'https://www.thecocktaildb.com/api/json/v1/1/list.php?g=list'
-			);
-			const sortedArray = await response.data.drinks.sort(
-				(a: Glasses, b: Glasses) => a.strGlass.localeCompare(b.strGlass)
-			);
-			setGlasses(sortedArray);
-		} catch (error) {
-			console.error('Error fetching glasses:', error);
-		}
-	};
-
-	const FetchIngredients = async () => {
-		try {
-			const response = await axios.get(
-				'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
-			);
-			const sortedArray = response.data.drinks.sort(
-				(a: Ingredient, b: Ingredient) =>
-					a.strIngredient1.localeCompare(b.strIngredient1)
-			);
-			setIngredients(sortedArray);
-		} catch (error) {
-			console.error('Error fetching ingredients:', error);
-		}
-	};
-
-	const FetchAlcoholic = async () => {
-		try {
-			const response = await axios.get(
-				'https://www.thecocktaildb.com/api/json/v1/1/list.php?a=list'
-			);
-			const sortedArray = await response.data.drinks.sort(
-				(a: Alcoholic, b: Alcoholic) =>
-					a.strAlcoholic.localeCompare(b.strAlcoholic)
-			);
-			setAlcoholic(sortedArray);
-		} catch (error) {
-			console.error('Error fetching alcoholic:', error);
-		}
-	};
-
-	useEffect(() => {
-		FetchCategory();
-		FetchGlasses();
-		FetchIngredients();
-		FetchAlcoholic();
-	}, []);
+	const category = useBookCategory<Category>(
+		'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list',
+		'category'
+	);
+	const glasses = useBookCategory<Glasses>(
+		'https://www.thecocktaildb.com/api/json/v1/1/list.php?g=list',
+		'glasses'
+	);
+	const ingredients = useBookCategory<Ingredient>(
+		'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list',
+		'ingredients'
+	);
+	const alcoholic = useBookCategory<Alcoholic>(
+		'https://www.thecocktaildb.com/api/json/v1/1/list.php?a=list',
+		'alcoholic'
+	);
 
 	function formatString(input: string): string {
 		return input.replace(/\s+/g, '_');
@@ -107,10 +60,17 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 
 	const menuFunc = (category: string, item: string) => {
 		const itemFormat = formatString(item);
-		func(
-			`https://www.thecocktaildb.com/api/json/v1/1/filter.php?${category}=${itemFormat}`
-		);
+		if (category === 'search') {
+			func(
+				`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${itemFormat}`
+			);
+		} else {
+			func(
+				`https://www.thecocktaildb.com/api/json/v1/1/filter.php?${category}=${itemFormat}`
+			);
+		}
 	};
+
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			const swiperWrapper = document.querySelector('.swiper-wrapper');
@@ -134,6 +94,9 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 		};
 	}, []);
 
+	const { searchTerm, searchResults, handleInputChange } =
+		useSearchCocktails();
+
 	return (
 		<div className="menu-book menu-book_position">
 			<Swiper
@@ -152,22 +115,27 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 				<SwiperSlide className="menu-book__slide menu-book__slide_2">
 					<p className="menu-book__title_2">
 						Search coctail by name:
-						<input className="menu-book__input" type="text" />
+						<input
+							value={searchTerm}
+							onChange={handleInputChange}
+							placeholder="Search cocktails..."
+							className="menu-book__input"
+							type="text"
+						/>
 					</p>
 					<div className="menu-book__slide-wrapper">
-						{/* {category &&
-							category.map((item, index) => (
+						{searchResults &&
+							searchResults.map((cocktail) => (
 								<p
 									className="menu-book__slide-text"
+									key={cocktail.idDrink}
 									onClick={() =>
-										menuFunc('c', item.strCategory)
+										menuFunc('search', cocktail.idDrink)
 									}
-									key={index}
 								>
-									{item.strCategory}
+									{cocktail.strDrink}
 								</p>
-							))} */}
-						<p>IN PROCESS</p>
+							))}
 					</div>
 				</SwiperSlide>
 				<SwiperSlide className="menu-book__slide menu-book__slide_3">
@@ -268,12 +236,6 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 						</p>
 					</div>
 				</SwiperSlide>
-				{/* <SwiperSlide className="menu-book__slide menu-book__slide_8">
-					Slide 8
-				</SwiperSlide>
-				<SwiperSlide className="menu-book__slide menu-book__slide_9">
-					Slide 9
-				</SwiperSlide> */}
 			</Swiper>
 		</div>
 	);

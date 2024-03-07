@@ -77,3 +77,18 @@
 		}
 	}
 }
+
+@media (orientation: portrait) and (max-width: 800px) {
+	.drink-slide {
+		max-height: max-content;
+		padding: 20px;
+
+		&__img {
+			border-radius: 50px;
+			max-width: 80vw;
+			max-height: 90vw;
+			margin-bottom: 15px;
+			overflow: hidden;
+		}
+	}
+}

@@ -96,7 +96,16 @@ const Popup: React.FC<IPopupProps> = ({
 	};
 
 	useEffect(() => {
-		document.body.style.overflow = 'hidden';
+		if (
+			window.innerWidth < 799 &&
+			/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+				navigator.userAgent
+			)
+		) {
+			document.body.style.overflow = 'auto';
+		} else {
+			document.body.style.overflow = 'hidden';
+		}
 		return () => {
 			document.body.style.overflow = 'auto';
 		};
