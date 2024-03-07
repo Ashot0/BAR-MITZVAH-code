@@ -3,6 +3,9 @@
 	max-width: 100vw;
 	overflow: hidden;
 	background-color: var(--Background);
+	display: flex;
+	flex-direction: column;
+	margin: 0;
 }
 ::-webkit-scrollbar {
 	background-color: #825971;

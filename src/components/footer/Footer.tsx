@@ -19,13 +19,14 @@ export default function Footer({ menuOpen }: { menuOpen: () => void }) {
 				<a href="https://www.pngwing.com/ru">PngWing</a>
 				<a href="https://www.klipartz.com/ru">Klipartz</a>
 			</p>
-			<div className="footer__menu-open" onClick={menuOpen}>
+			<div className="footer__down"></div>
+			{/* <div className="footer__menu-open" onClick={menuOpen}>
 				<img
 					className="footer__menu-image"
 					src="./Images/tequila.jpg"
 					alt=""
 				/>
-			</div>
+			</div> */}
 		</div>
 	);
 }

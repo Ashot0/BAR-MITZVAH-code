@@ -1,7 +1,7 @@
 .footer {
+	flex-shrink: 0;
 	position: relative;
 	width: 100%;
-	height: 100%;
 	display: flex;
 	overflow: hidden;
 	padding: 10px;
@@ -27,23 +27,5 @@
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
-	}
-	&__menu-open {
-		display: none;
-	}
-}
-@media (max-aspect-ratio: 1/2) {
-	.footer {
-		&__menu-open {
-			padding: 5px 0;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			position: relative;
-		}
-		&__menu-image {
-			height: 100%;
-			max-width: 100vw;
-		}
 	}
 }
