@@ -136,6 +136,11 @@
 		flex-direction: column;
 		gap: 10px;
 	}
+	&__close {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+	}
 }
 
 @media (max-width: 800px) {
@@ -146,8 +151,8 @@
 			}
 		}
 		&__slider {
-			overflow: hidden;
-			width: 100%;
+			// overflow: hidden;
+			width: 90%;
 			height: 100%;
 			font-size: 50px;
 		}
@@ -156,9 +161,6 @@
 
 @media (orientation: portrait) and (max-width: 800px) {
 	.menu-book {
-		&__slide {
-			height: 100vh;
-		}
 		&__slide-text {
 			font-size: 50px;
 			padding: 20px;

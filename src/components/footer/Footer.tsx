@@ -16,6 +16,9 @@ export default function Footer({ menuOpen }: { menuOpen: () => void }) {
 				When creating the website, the following were used:
 				<a href="https://www.thecocktaildb.com/">TheCocktailDB</a>
 				<a href="https://www.mediawiki.org/wiki/MediaWiki">MediaWiki</a>
+				<a href="https://twitter.com/GlitchyNPC">
+					Barmen art @GlitchyNPC
+				</a>
 				<a href="https://www.pngwing.com/ru">PngWing</a>
 				<a href="https://www.klipartz.com/ru">Klipartz</a>
 			</p>

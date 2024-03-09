@@ -15,9 +15,8 @@ const Barmen: React.FC<IBarmen> = ({ className = '', func, random }) => {
 		random();
 	};
 
-	const onClickTransparent = () => {};
 	const onClickOpaque = () => {
-		func();
+		playSound();
 	};
 
 	const handleClick = (event: React.MouseEvent<HTMLImageElement>) => {
@@ -31,22 +30,20 @@ const Barmen: React.FC<IBarmen> = ({ className = '', func, random }) => {
 		if (!ctx) return;
 		ctx.drawImage(img, 0, 0, img.width, img.height);
 		const pixelData = ctx.getImageData(x, y, 1, 1).data;
-		if (pixelData[3] === 0) {
-			onClickTransparent();
-		} else {
+		if (pixelData[3] !== 0) {
 			onClickOpaque();
 		}
 	};
 	return (
 		<div className={className + ' barmen'}>
 			<img
-				onClick={handleClick}
+				onClick={func}
 				className="barmen__menu"
-				src="./Images/menu.png"
+				src="./Images/menu-120.png"
 				alt=""
 			/>
 			<img
-				onClick={playSound}
+				onClick={handleClick}
 				className="barmen__image"
 				src="./Images/barmen.png"
 				alt=""

@@ -6,6 +6,12 @@
 		top: 40%;
 		width: 25%;
 		cursor: pointer;
+		&:hover {
+			width: 25.5%;
+			top: 39.5%;
+			left: -30.25%;
+			filter: drop-shadow(0 0px 4px var(--Others-Borders));
+		}
 	}
 	&__image {
 		width: 100%;

@@ -8,6 +8,7 @@ import './menu-book.scss';
 import { EffectCards } from 'swiper/modules';
 import useBookCategory from '../../hooks/useBookCategory';
 import useSearchCocktails from '../../hooks/useSearchCocktails';
+import CloseBtn from '../closeBtn/CloseBtn';
 
 interface Category {
 	strCategory: string;
@@ -100,6 +101,11 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 				className="mySwiper menu-book__slider"
 			>
 				<SwiperSlide className="menu-book__slide menu-book__slide_1">
+					<CloseBtn
+						condition
+						className="menu-book__close"
+						onClick={menuOpen}
+					/>
 					<img
 						className="menu-book__image"
 						src="./Images/menu.png"
@@ -107,6 +113,7 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 					/>
 				</SwiperSlide>
 				<SwiperSlide className="menu-book__slide menu-book__slide_2">
+					<CloseBtn className="menu-book__close" onClick={menuOpen} />
 					<p className="menu-book__title_2">
 						Search coctail by name:
 						<input
@@ -133,6 +140,7 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 					</div>
 				</SwiperSlide>
 				<SwiperSlide className="menu-book__slide menu-book__slide_3">
+					<CloseBtn className="menu-book__close" onClick={menuOpen} />
 					<p>Category</p>
 					<div className="menu-book__slide-wrapper">
 						{category &&
@@ -150,6 +158,7 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 					</div>
 				</SwiperSlide>
 				<SwiperSlide className="menu-book__slide menu-book__slide_4">
+					<CloseBtn className="menu-book__close" onClick={menuOpen} />
 					<p>Glasses</p>
 					<div className="menu-book__slide-wrapper">
 						{glasses &&
@@ -165,6 +174,7 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 					</div>
 				</SwiperSlide>
 				<SwiperSlide className="menu-book__slide menu-book__slide_5">
+					<CloseBtn className="menu-book__close" onClick={menuOpen} />
 					<p>Ingredient</p>
 					<div className="menu-book__slide-wrapper">
 						{ingredients &&
@@ -182,6 +192,7 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 					</div>
 				</SwiperSlide>
 				<SwiperSlide className="menu-book__slide menu-book__slide_6">
+					<CloseBtn className="menu-book__close" onClick={menuOpen} />
 					<p>Alcoholic</p>
 					<div className="menu-book__slide-wrapper">
 						{alcoholic &&
@@ -199,6 +210,7 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 					</div>
 				</SwiperSlide>
 				<SwiperSlide className="menu-book__slide menu-book__slide_7">
+					<CloseBtn className="menu-book__close" onClick={menuOpen} />
 					<div className="menu-book__sub">
 						<p>Made by Illia Golovan</p>
 						<p>
@@ -227,6 +239,11 @@ const MenuBook: React.FC<IMenuBookProps> = ({ func, menuOpen }) => {
 						</p>
 						<p>
 							<a href="https://www.klipartz.com/ru">Klipartz</a>
+						</p>
+						<p>
+							<a href="https://twitter.com/GlitchyNPC">
+								Barmen art @GlitchyNPC
+							</a>
 						</p>
 					</div>
 				</SwiperSlide>

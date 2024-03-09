@@ -4,6 +4,10 @@
 	height: 24px;
 	cursor: pointer;
 	transition: transform 0.3s;
+	&:hover .close-icon_dark {
+		stroke: var(--Others-Borders-2);
+		animation: transfomate 2s infinite;
+	}
 	&:hover .close-icon {
 		stroke: var(--colors-2);
 		animation: transfomate 2s infinite;
@@ -12,7 +16,8 @@
 		transform: scale(0.9);
 	}
 }
-.close-icon {
+.close-icon,
+.close-icon_dark {
 	width: 100%;
 	height: 100%;
 	stroke: var(--Others-Background);

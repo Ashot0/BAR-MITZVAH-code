@@ -4,14 +4,19 @@ import './close-btn.scss';
 interface ICloseBtnProps {
 	className?: string;
 	onClick?: () => void;
+	condition?: boolean;
 }
 
-const CloseBtn: React.FC<ICloseBtnProps> = ({ className = '', onClick }) => {
+const CloseBtn: React.FC<ICloseBtnProps> = ({
+	className = '',
+	onClick,
+	condition,
+}) => {
 	return (
 		<div className={className + ' close-btn'}>
 			<div className="close-button" onClick={onClick}>
 				<svg
-					className="close-icon"
+					className={condition ? 'close-icon_dark' : 'close-icon'}
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 24 24"
 					fill="none"
