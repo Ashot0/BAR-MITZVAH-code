@@ -31,7 +31,7 @@ const DrinksSlider: React.FC<IDrinksSliderProps> = ({
 			spaceBetween={50}
 			slidesPerView={1}
 			navigation={true}
-			scrollbar={true}
+			scrollbar={{ draggable: true }}
 			keyboard={{
 				enabled: true,
 			}}

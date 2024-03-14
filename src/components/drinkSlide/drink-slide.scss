@@ -17,6 +17,8 @@
 	gap: 10px;
 	&__img {
 		border-radius: 50px;
+		margin-right: 10px;
+		border: 1px solid var(--Others-Background);
 		max-width: 20vw;
 		max-height: 20vw;
 		overflow: hidden;
